@@ -3,7 +3,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-			"App\\Components\\": "src/components"
+	    "App\\Components\\": "src/components"
         }
     },
     "require": {
