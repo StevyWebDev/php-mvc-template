@@ -1,5 +1,5 @@
 <?php
-namespace App\Home;
+namespace App\Components\Home;
 
 class Router extends \App\Router {
 	protected function init(): void {

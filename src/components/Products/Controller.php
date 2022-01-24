@@ -1,11 +1,12 @@
 <?php
-namespace App\Products;
-
-// /media/data/web/learn/php/dynamic-array/src/Products
-// \App\Products
+namespace App\Components\Products;
 
 class Controller extends \App\Controller {
 	public function getProducts() {
-		echo "works";
+		$products = $this->callModel("retrieveProducts");
+		$this->render("products", "main", [
+			"title" => "Products", 
+			"products" => $products
+		]);
 	}
 }

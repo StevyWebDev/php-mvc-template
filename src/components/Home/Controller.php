@@ -1,11 +1,8 @@
 <?php
-namespace App\Home;
-
-// /media/data/web/learn/php/dynamic-array/src/Products
-// \App\Products
+namespace App\Components\Home;
 
 class Controller extends \App\Controller {
 	public function getHome() {
-		echo "works";
+		$this->render("home", "main", ["title" => "Home"]);
 	}
 }

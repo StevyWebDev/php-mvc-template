@@ -2,7 +2,8 @@
     "name": "alexandrefernandez/php-mvc-template",
     "autoload": {
         "psr-4": {
-            "App\\": "src/components"
+            "App\\": "src/",
+			"App\\Components\\": "src/components"
         }
     },
     "require": {

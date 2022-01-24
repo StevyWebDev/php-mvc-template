@@ -1,8 +1,7 @@
 <?php
-namespace App\Products;
+namespace App\Components\Products;
 
 class Product {
-	public function __construct() {
-		echo "hi from Product \n";
-	}
+	public string $name;
+	public float $price;
 }
