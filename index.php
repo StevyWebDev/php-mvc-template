@@ -1,6 +1,8 @@
 <?php
 require "vendor/autoload.php";
 
+
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -10,18 +12,20 @@ $dotenv->load();
 //echo "<pre>", print_r(preg_split("/[\/.]/", $_SERVER["REQUEST_URI"])) ,"</pre>";
 
 function getRouter(
-	string $namespace = "App", string $home = "Home", string $routerClass = "Router"
+	string $parentNamespace = "App", string $home = "Home", string $routerClass = "Router"
 ): object {
 	$uri = $_SERVER["REQUEST_URI"] ?? "/";
 	$uri = preg_split("/[\/.]/", strtolower($uri));
-	$path = "\\$namespace\\$home";
+	$component = $home;
 	if(!empty($uri[1]) && $uri[1] !== "index") {
 		$uri[1][0] = strtoupper($uri[1][0]);
-		$path = "$namespace\\$uri[1]";
+		$component = "$uri[1]";
 	}
-	$router = "$path\\$routerClass";
+	$namespace = "\\$parentNamespace\\$component";
+	$router = "$namespace\\$routerClass";
 	if(!class_exists($router)) throw new Exception("$router doesn't exist");
-	return new $router($path);
+	if($component === $home) return new $router($namespace, false);
+	return new $router($namespace);
 }
 
 $router = getRouter();
@@ -40,7 +44,7 @@ $controller = new $controllerName();
 call_user_func_array([$controller, $task], $params);
 */
 
-
+/*
 function target() {
 	$name = "App\ ";
 
@@ -57,15 +61,7 @@ $match = $router->match();
 if(is_array($match)) {
 	call_user_func_array($match["target"], $match["params"]);
 }
-
-
-
-
-
-
-use App\Products\Product;
-
-new Product();
+*/
 
 
 /*
